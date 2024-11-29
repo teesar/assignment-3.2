@@ -1,0 +1,14 @@
+#!/bin/bash
+
+systemctl stop nginx
+systemctl stop ufw
+systemctl disable nginx
+systemctl disable ufw
+pacman -Rns --noconfirm nginx ufw
+rm -rf /etc/nginx
+rm -rf /var/lib/nginx
+userdel -r webgen
+rm -rf /etc/systemd/system/generate-index.timer
+rm -rf /etc/systemd/system/generate-index.service
+systemctl daemon-reload
+
